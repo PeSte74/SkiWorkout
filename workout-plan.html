@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10-Day Band &amp; Bodyweight Training Plan</title>
+<style>
+  :root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --accent: #059669;
+    --warn: #dc2626;
+    --yoga: #7c3aed;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 20px;
+  }
+  .container { max-width: 1000px; margin: 0 auto; }
+  header {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  h1 { font-size: 1.5rem; margin-bottom: 8px; color: var(--primary); }
+  h2 { font-size: 1.25rem; margin: 20px 0 12px; color: var(--text); border-bottom: 2px solid var(--border); padding-bottom: 6px; }
+  h3 { font-size: 1.1rem; margin: 16px 0 8px; color: var(--primary-dark); }
+  p { margin-bottom: 10px; color: var(--muted); }
+  .warning {
+    background: #fef2f2;
+    border-left: 4px solid var(--warn);
+    padding: 12px 16px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.95rem;
+  }
+  .warning b { color: var(--warn); }
+  .note {
+    background: #eff6ff;
+    border-left: 4px solid var(--primary);
+    padding: 12px 16px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.95rem;
+  }
+  .yoga-note {
+    background: #f5f3ff;
+    border-left: 4px solid var(--yoga);
+    padding: 12px 16px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.95rem;
+  }
+
+  /* Week / Day cards */
+  .week { margin-bottom: 30px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .week-header {
+    background: var(--primary);
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .week-body { padding: 16px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .day-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    background: #fff;
+  }
+  .day-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary-dark);
+  }
+  .day-focus { font-size: 0.85rem; color: var(--muted); margin-bottom: 10px; font-style: italic; }
+  .empty-day {
+    background: #f5f3ff;
+    border: 2px dashed var(--yoga);
+    color: var(--yoga);
+    text-align: center;
+    padding: 20px;
+    font-weight: 600;
+  }
+
+  /* Exercise rows */
+  table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  th {
+    text-align: left;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    padding: 4px 6px;
+    border-bottom: 2px solid var(--border);
+  }
+  td {
+    padding: 7px 6px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  .ex-name { font-weight: 600; color: var(--text); width: 30%; }
+  .ex-sets { width: 14%; color: var(--muted); }
+  .ex-tempo { width: 22%; color: var(--muted); font-size: 0.85rem; }
+  .ex-video { width: 34%; text-align: right; }
+  .btn-video {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--primary-dark);
+    transition: background 0.2s;
+  }
+  .btn-video:hover { background: var(--primary-dark); }
+  .btn-video::before { content: "▶"; font-size: 0.7rem; }
+
+  /* Tables for progression */
+  table.prog { margin-top: 20px; }
+  table.prog th { background: #f1f5f9; }
+
+  .legend {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .dot-blue { background: var(--primary); }
+  .dot-green { background: var(--accent); }
+  .dot-red { background: var(--warn); }
+  .dot-purple { background: var(--yoga); }
+
+  footer {
+    margin-top: 30px;
+    padding: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .week { break-inside: avoid; }
+    .day-card { break-inside: avoid; }
+    .btn-video { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>🏋️‍♀️ 10-Day Band &amp; Bodyweight Training Plan</h1>
+    <p>Ski &amp; runner focused • Lower body strength • Achilles tendinitis safe • Max 30 min/day</p>
+    <div class="warning">
+      <b>Achilles Tendinitis Notice:</b> This plan includes calf work on most days. Isometric holds are therapeutic. If pain exceeds 3/10 during any exercise, or lasts more than 24 hours after, reduce volume or skip that movement. Never jump on back-to-back days.
+    </div>
+    <div class="note">
+      <b>Equipment:</b> Resistance loop band(s), sturdy chair, wall, floor space. No dumbbells required.
+      <br><b>Upper body:</b> Minimal — push-ups and band rows only, 2–3 sets on select days.
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="dot dot-blue"></span> Strength / Ski</div>
+    <div class="legend-item"><span class="dot dot-green"></span> Runner / Prehab</div>
+    <div class="legend-item"><span class="dot dot-red"></span> Plyometrics</div>
+    <div class="legend-item"><span class="dot dot-purple"></span> Yoga / Recovery (empty)</div>
+  </div>
+
+  <h2>How to Read This Plan</h2>
+  <ul>
+    <li><b>Sets × Reps</b> — e.g., 3 × 10 each leg means 3 sets of 10 on <i>each</i> side.</li>
+    <li><b>Tempo:</b> “2-0-1” = 2 seconds down, no pause, 1 second up. “3-1-1” = 3 seconds down, 1-second pause, 1 second up.</li>
+    <li><b>Band tension:</b> Light = single thin band · Medium = double band / thicker · Heavy = triple band or shortest loop.</li>
+    <li><b>Video links:</b> Click the “▶ Video” button next to any exercise. It opens a YouTube search for that exact movement so you can pick a clear demonstration.</li>
+    <li><b>Day 6 is always YOGA (empty)</b> — it floats after your hardest session (Day 5). If you feel sore after Day 5, you can move yoga to Day 7 and shift everything forward.</li>
+  </ul>
+
+  <!-- ====================== WEEK 1 ====================== -->
+  <div class="week">
+    <div class="week-header">
+      <span>Week 1 — Base Week</span>
+      <span>Focus: Learn form, pain-free reps</span>
+    </div>
+    <div class="week-body">
+
+      <!-- Day 1 -->
+      <div class="day-card">
+        <div class="day-title">🎿 Day 1 — Ski Strength A</div>
+        <div class="day-focus">Glutes, quads, hamstrings, calves</div>
+        <table>
+          <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Tempo / Notes</th><th>Video</th></tr></thead>
+          <tbody>
+            <tr><td class="ex-name">Band walks (front / back / side)</td><td class="ex-sets">3 × 10 each direction</td><td class="ex-tempo">Band around ankles; light tension</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=band+walks+front+back+side+resistance+band" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Glute bridge (double leg)</td><td class="ex-sets">3 × 12</td><td class="ex-tempo">Squeeze 1 sec at top</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=glute+bridge+exercise+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Glute bridge (single leg)</td><td class="ex-sets">3 × 8 each leg</td><td class="ex-tempo">Keep hips level</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=single+leg+glute+bridge+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Bodyweight squat</td><td class="ex-sets">3 × 15</td><td class="ex-tempo">2-0-1 tempo</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=bodyweight+squat+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Reverse lunge</td><td class="ex-sets">3 × 10 each leg</td><td class="ex-tempo">Step back, tall torso</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=reverse+lunge+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">RDL (Romanian Deadlift)</td><td class="ex-sets">3 × 12</td><td class="ex-tempo">Hinge at hips, slight knee bend</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=romanian+deadlift+bodyweight+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Calf raises (straight leg)</td><td class="ex-sets">3 × 15</td><td class="ex-tempo">Full range, slow lower</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=standing+calf+raise+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Push-ups</td><td class="ex-sets">2 × 8–12</td><td class="ex-tempo">Knees or wall if needed</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=push+up+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="day-card">
+        <div class="day-title">🏃 Day 2 — Runner Prehab + Achilles Focus</div>
+        <div class="day-focus">Calves, tibialis, hip stability</div>
+        <table>
+          <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Tempo / Notes</th><th>Video</th></tr></thead>
+          <tbody>
+            <tr><td class="ex-name">Knee drives</td><td class="ex-sets">2 × 10 each side</td><td class="ex-tempo">Band around feet if available</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=knee+drives+exercise+resistance+band" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Crab walks</td><td class="ex-sets">2 × 1 minute</td><td class="ex-tempo">Stay low in quarter squat</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=crab+walk+exercise+glutes" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Standing runs</td><td class="ex-sets">2 × 10 each side</td><td class="ex-tempo">Alternate legs, tall posture</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=standing+runs+exercise+runner" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Single-leg hinges</td><td class="ex-sets">2 × 10 each leg</td><td class="ex-tempo">Soft knee, flat back</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=single+leg+hinge+bodyweight+exercise" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Tibialis toe raises</td><td class="ex-sets">3 × 15</td><td class="ex-tempo">Lift toes, heels on floor</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=tibialis+anterior+toe+raises+exercise" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Calf raises (bent knee)</td><td class="ex-sets">3 × 15</td><td class="ex-tempo">Soleus focus, knee bent ~30°</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=bent+knee+calf+raise+soleus+exercise" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Isometric calf hold</td><td class="ex-sets">2 × 30 sec each leg</td><td class="ex-tempo">Pain-free; build to 45 sec</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=isometric+calf+hold+Achilles+tendinopathy" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Band rows</td><td class="ex-sets">2 × 12</td><td class="ex-tempo">Light band anchored at chest height</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=resistance+band+row+exercise" class="btn-video" target="_blank">▶ Video</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Day 3 -->
+      <div class="day-card">
+        <div class="day-title">🦵 Day 3 — Core &amp; Hips</div>
+        <div class="day-focus">Obliques, glute medius, adductors</div>
+        <table>
+          <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Tempo / Notes</th><th>Video</th></tr></thead>
+          <tbody>
+            <tr><td class="ex-name">Side plank</td><td class="ex-sets">3 × 30 sec each side</td><td class="ex-tempo">Knees down if needed</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=side+plank+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Copenhagen bridge</td><td class="ex-sets">3 × 8–10</td><td class="ex-tempo">Top foot on chair/sofa</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=Copenhagen+adductor+exercise+bridge" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Single-leg side plank</td><td class="ex-sets">2 × 20 sec each side</td><td class="ex-tempo">Advanced; skip if too hard</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=single+leg+side+plank+exercise" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Clamshells</td><td class="ex-sets">3 × 15</td><td class="ex-tempo">Band around knees optional</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=clamshell+exercise+glutes+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Band hip march</td><td class="ex-sets">3 × 12 each leg</td><td class="ex-tempo">Band around feet, seated or standing</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=band+hip+march+exercise" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Glute bridge</td><td class="ex-sets">3 × 15</td><td class="ex-tempo">Standard double-leg</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=glute+bridge+exercise+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Day 4 -->
+      <div class="day-card">
+        <div class="day-title">🏔️ Day 4 — Full Lower Body + Light Upper Push</div>
+        <div class="day-focus">Full leg chain, chest/triceps</div>
+        <table>
+          <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Tempo / Notes</th><th>Video</th></tr></thead>
+          <tbody>
+            <tr><td class="ex-name">Squat</td><td class="ex-sets">3 × 15</td><td class="ex-tempo">2-0-1 tempo</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=bodyweight+squat+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Forward lunge</td><td class="ex-sets">3 × 10 each leg</td><td class="ex-tempo">Step forward, knee near floor</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=forward+lunge+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Lateral lunge</td><td class="ex-sets">3 × 10 each leg</td><td class="ex-tempo">Shift side to side</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=lateral+lunge+exercise" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">RDL</td><td class="ex-sets">3 × 12</td><td class="ex-tempo">2-0-1 tempo</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=romanian+deadlift+bodyweight+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Banded prone hamstring curl</td><td class="ex-sets">3 × 12</td><td class="ex-tempo">Band around ankles, lie on stomach</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=prone+hamstring+curl+resistance+band" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Calf raises</td><td class="ex-sets">3 × 15</td><td class="ex-tempo">Straight leg</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=standing+calf+raise+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Push-ups</td><td class="ex-sets">2 × 10–15</td><td class="ex-tempo">Full range</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=push+up+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Day 5 -->
+      <div class="day-card">
+        <div class="day-title">⚡ Day 5 — Plyometric Power <span style="font-size:0.8rem;color:var(--warn)">(Hardest Day)</span></div>
+        <div class="day-focus">Explosive power, ski/sport readiness</div>
+        <table>
+          <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Tempo / Notes</th><th>Video</th></tr></thead>
+          <tbody>
+            <tr><td class="ex-name">Jumping lunges</td><td class="ex-sets">3 × 6–8 each leg</td><td class="ex-tempo">Soft landing, low volume</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=jumping+lunges+exercise+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Lateral bounds</td><td class="ex-sets">3 × 5–6 each direction</td><td class="ex-tempo">Explosive side-to-side</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=lateral+bounds+plyometric+exercise" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">90° jumps</td><td class="ex-sets">3 × 8</td><td class="ex-tempo">Jump and rotate 90° in air</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=90+degree+jump+exercise" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Squat jumps</td><td class="ex-sets">3 × 8</td><td class="ex-tempo">Explosive up, soft landing</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=squat+jump+exercise+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Curtsy to single-leg squat</td><td class="ex-sets">3 × 6 each leg</td><td class="ex-tempo">Cross behind, then single-leg squat</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=curtsy+lunge+to+single+leg+squat" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Light calf raises (flush)</td><td class="ex-sets">2 × 12</td><td class="ex-tempo">Easy, blood flow only</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=standing+calf+raise+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Day 6 -->
+      <div class="day-card empty-day">
+        <div style="font-size:1.2rem;">🧘‍♀️ YOGA DAY</div>
+        <div style="margin-top:6px; opacity:0.9">Floating recovery day — empty after Day 5.<br>Do your regular yoga, stretching, or rest.</div>
+      </div>
+
+      <!-- Day 7 -->
+      <div class="day-card">
+        <div class="day-title">🦿 Day 7 — Unilateral Strength + Light Upper Pull</div>
+        <div class="day-focus">Single-leg balance, back</div>
+        <table>
+          <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Tempo / Notes</th><th>Video</th></tr></thead>
+          <tbody>
+            <tr><td class="ex-name">Single-leg RDL</td><td class="ex-sets">3 × 10 each leg</td><td class="ex-tempo">Balance on one leg, hinge</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=single+leg+Romanian+deadlift+bodyweight" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Curtsy lunge</td><td class="ex-sets">3 × 10 each leg</td><td class="ex-tempo">Cross behind</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=curtsy+lunge+exercise+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Lateral lunge</td><td class="ex-sets">3 × 10 each leg</td><td class="ex-tempo">Side to side</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=lateral+lunge+exercise" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Single-leg squat to chair</td><td class="ex-sets">3 × 6 each leg</td><td class="ex-tempo">Tap chair, stand up</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=single+leg+squat+to+chair+exercise" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Single-leg side plank</td><td class="ex-sets">2 × 20 sec each side</td><td class="ex-tempo">Top leg lifted</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=single+leg+side+plank+exercise" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Band rows</td><td class="ex-sets">3 × 12</td><td class="ex-tempo">Medium band anchored</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=resistance+band+row+exercise" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Calf raises</td><td class="ex-sets">2 × 15</td><td class="ex-tempo">Straight leg</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=standing+calf+raise+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Day 8 -->
+      <div class="day-card">
+        <div class="day-title">🍑 Day 8 — Glute &amp; Hip</div>
+        <div class="day-focus">Glute maximus, medius, external rotators</div>
+        <table>
+          <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Tempo / Notes</th><th>Video</th></tr></thead>
+          <tbody>
+            <tr><td class="ex-name">Clamshells</td><td class="ex-sets">3 × 15</td><td class="ex-tempo">Band around knees</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=clamshell+exercise+glutes+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Banded squat</td><td class="ex-sets">3 × 15</td><td class="ex-tempo">Band around knees, push out</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=banded+squat+resistance+band+knees" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Hip thrust (band across hips)</td><td class="ex-sets">3 × 15</td><td class="ex-tempo">Band anchored behind you</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=band+hip+thrust+exercise" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Single-leg glute bridge</td><td class="ex-sets">3 × 10 each leg</td><td class="ex-tempo">—</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=single+leg+glute+bridge+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Fire hydrants</td><td class="ex-sets">3 × 12 each leg</td><td class="ex-tempo">Band around knees optional</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=fire+hydrant+exercise+glutes+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Side plank</td><td class="ex-sets">2 × 30 sec each side</td><td class="ex-tempo">—</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=side+plank+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Day 9 -->
+      <div class="day-card">
+        <div class="day-title">💃 Day 9 — Full Body Band + Dance Cardio</div>
+        <div class="day-focus">Total body, coordination, fun</div>
+        <table>
+          <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Tempo / Notes</th><th>Video</th></tr></thead>
+          <tbody>
+            <tr><td class="ex-name">Banded squat</td><td class="ex-sets">3 × 15</td><td class="ex-tempo">Band around knees</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=banded+squat+resistance+band+knees" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Band RDL</td><td class="ex-sets">3 × 12</td><td class="ex-tempo">Band under feet</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=band+Romanian+deadlift+exercise" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Band rows</td><td class="ex-sets">2 × 12</td><td class="ex-tempo">—</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=resistance+band+row+exercise" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Band press (chest)</td><td class="ex-sets">2 × 12</td><td class="ex-tempo">Anchor band behind back</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=band+chest+press+exercise+resistance+band" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Glute bridge</td><td class="ex-sets">2 × 15</td><td class="ex-tempo">—</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=glute+bridge+exercise+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Shaper Running Man</td><td class="ex-sets">3 min</td><td class="ex-tempo">Intervals: 30 sec on / 30 sec off</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=shaper+running+man+shuffle+dance+tutorial" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Jumping v-step</td><td class="ex-sets">2 min</td><td class="ex-tempo">—</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=jumping+v+step+shuffle+dance" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Calf raises</td><td class="ex-sets">2 × 15</td><td class="ex-tempo">Straight leg</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=standing+calf+raise+proper+form" class="btn-video" target="_blank">▶ Video</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Day 10 -->
+      <div class="day-card">
+        <div class="day-title">🧘 Day 10 — Mobility &amp; Active Recovery</div>
+        <div class="day-focus">Ankles, hips, gentle movement</div>
+        <table>
+          <thead><tr><th>Exercise</th><th>Duration</th><th>Notes</th><th>Video</th></tr></thead>
+          <tbody>
+            <tr><td class="ex-name">Ankle multi-angle work</td><td class="ex-sets">5 min</td><td class="ex-tempo">Circles, alphabet, inversion/eversion</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=ankle+mobility+exercises+multi+directional" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Hip flexor stretch</td><td class="ex-sets">2 min each side</td><td class="ex-tempo">Half-kneeling, tuck pelvis</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=hip+flexor+stretch+half+kneeling" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Basic dance moves</td><td class="ex-sets">5 min</td><td class="ex-tempo">Shuffle steps, v-step, running man</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=basic+dance+moves+beginner+shuffle" class="btn-video" target="_blank">▶ Video</a></td></tr>
+            <tr><td class="ex-name">Easy walk or flow</td><td class="ex-sets">10 min</td><td class="ex-tempo">—</td><td class="ex-video">—</td></tr>
+            <tr><td class="ex-name">Isometric calf hold</td><td class="ex-sets">2 × 30 sec each leg</td><td class="ex-tempo">Pain-free</td><td class="ex-video"><a href="https://www.youtube.com/results?search_query=isometric+calf+hold+Achilles+tendinopathy" class="btn-video" target="_blank">▶ Video</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ====================== PROGRESSION TABLE ====================== -->
+  <h2>Week-by-Week Progression</h2>
+  <p>Repeat the exact same 10-day structure. Adjust only the variables below.</p>
+  <table class="prog">
+    <thead>
+      <tr><th>Variable</th><th>Week 1</th><th>Week 2</th><th>Week 3</th><th>Deload (Week 4)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Tempo (squats, lunges, RDL)</td><td>2-0-1</td><td>3-1-1</td><td>3-1-1 + 1-sec pause at bottom</td><td>2-0-1, lighter feel</td></tr>
+      <tr><td>Reps (lower body)</td><td>As listed</td><td>+2 reps per set</td><td>+2 reps per set</td><td>-30% reps</td></tr>
+      <tr><td>Main lift sets (Days 1, 4, 7, 9)</td><td>3 sets</td><td>3 sets</td><td>4 sets</td><td>2 sets</td></tr>
+      <tr><td>Band tension</td><td>Light</td><td>Medium (double/thicker)</td><td>Heavy (triple/shortest loop)</td><td>Light only</td></tr>
+      <tr><td>Upper body</td><td>2 × 8–12 push-ups</td><td>2 × 10–15 push-ups; 3 × 12 rows</td><td>Same as Week 2</td><td>1 × 10 push-ups; 2 × 10 rows</td></tr>
+      <tr><td>Plyometrics (Day 5)</td><td>As listed</td><td>As listed if Achilles OK</td><td>As listed if Achilles OK; else tempo step-ups</td><td>Skip jumps; slow step-ups only</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <b>Progression rule:</b> Only move to the next week if you completed all sessions with ≤3/10 pain and good form. If an exercise feels easy, increase band tension before adding reps.
+  </div>
+
+  <h2>Band Tension Guide</h2>
+  <table class="prog">
+    <thead><tr><th>Level</th><th>How to achieve it</th><th>Best for</th></tr></thead>
+    <tbody>
+      <tr><td>Light</td><td>Single thin loop band</td><td>Warm-ups, clamshells, band walks</td></tr>
+      <tr><td>Medium</td><td>Double the band, or use a thicker band</td><td>Squats, RDLs, hip thrusts, rows</td></tr>
+      <tr><td>Heavy</td><td>Triple the band, or use the shortest possible loop</td><td>Glute bridges, advanced squats</td></tr>
+    </tbody>
+  </table>
+
+  <footer>
+    <p>Generated from your saved Instagram exercise list. Videos are YouTube search links — click and choose the clearest demonstration for each move.</p>
+    <p><em>Not medical advice. Consult a physio or doctor before starting if you have active Achilles tendinitis or other injuries.</em></p>
+  </footer>
+</div>
+
+</body>
+</html>
